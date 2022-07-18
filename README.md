@@ -10,6 +10,7 @@ peoplesemsegnet-on-deepstream は、DeepStream 上で PeopleSemSegNet の AIモ�
 
 ## PeopleSemSegNetについて
 PeopleSemSegNet は、画像内の人を背景から分離するセマンティックセグメンテーションマスクを返すAIモデルです。
+PeopleSemSegNet は、特徴抽出にUNetを使用しています。
 
 ## 動作手順
 ### Dockerコンテナの起動
@@ -32,3 +33,7 @@ stream-start:
 
 ## engineファイルについて
 engineファイルである peoplesemsegnet.etlt_b1_gpu0_fp16.engine は、[peoplesemsegnet-on-tao-toolkit](https://github.com/latonaio/peoplesemsegnet-on-tao-toolkit)と共通のファイルであり、当該レポジトリで作成した engineファイルを、本リポジトリで使用しています。  
+
+## 演算について
+本レポジトリでは、ニューラルネットワークのモデルにおいて、エッジコンピューティング環境での演算スループット効率を高めるため、FP16(半精度浮動小数点)を使用しています。  
+浮動小数点値の変更は、Makefileの以下の部分を変更し、engineファイルを生成してください。
